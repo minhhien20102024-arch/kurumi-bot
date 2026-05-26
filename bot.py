@@ -10,8 +10,9 @@ import asyncio
 import random
 
 # --- CẤU HÌNH THÔNG TIN CHÌA KHÓA THẬT CỦA BẠN ---
-DISCORD_TOKEN = 'MTQ5NDU4MDA2NDU0MzgzODIzMA.GRVoGF.HaBoW8gJ6rDGmnqtosTq6upaJSUNZddxWaJhrE'
-GOOGLE_API_KEY = 'AIzaSyBiXcfy2ekszgZNoLC5M1LKAKTkPOejQhU'
+DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
+GOOGLE_API_KEY = os.getenv("GEMINI_API_KEY")
+
 
 ai_client = genai.Client(api_key=GOOGLE_API_KEY)
 
