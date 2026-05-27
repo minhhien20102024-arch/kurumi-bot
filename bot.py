@@ -284,11 +284,14 @@ async def on_message(message):
                 contents.append(types.Content(role="user", parts=[types.Part.from_text(text=message.content)]))
 
                 try:
-                    # Gọi bộ não Gemini 2.5-flash xử lý đồng bộ theo thư viện mới của chị yêu
+                    # Gọi bộ não Gemini 2.5-flash với cấu hình độ sáng tạo
                     response = ai_client.models.generate_content(
                         model="gemini-2.5-flash",
                         contents=contents,
-                        config=config
+                        config=types.GenerateContentConfig(
+                            system_instruction=system_instruction,
+                            temperature=0.7  # Đây chính là độ sáng tạo nè, giúp bot rep mượt và "bánh cuốn" hơn
+                        )
                     )
 
                     # Lưu cặp câu hỏi và câu trả lời hiện tại vào bộ nhớ đệm lịch sử của phòng
