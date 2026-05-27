@@ -294,15 +294,14 @@ async def on_message(message):
                         )
                     )
 
+                    # Bắn tin nhắn Reply giật lùi tag tên người chat siêu mượt
+                    await message.reply(response.text)
                     # Lưu cặp câu hỏi và câu trả lời hiện tại vào bộ nhớ đệm lịch sử của phòng
                     FREE_CHAT_HISTORY[guild_id].append((message.content, response.text))
 
                     # Cơ chế dọn rác tự động: Vượt quá 10 câu thoại thì xóa câu cũ nhất để nhẹ bộ nhớ
                     if len(FREE_CHAT_HISTORY[guild_id]) > 10:
                         FREE_CHAT_HISTORY[guild_id].pop(0)
-
-                    # Bắn tin nhắn Reply giật lùi tag tên người chat siêu mượt
-                    await message.reply(response.text)
 
                 except Exception as e:
                     print(f"Lỗi hệ thống chat tự do: {e}")
