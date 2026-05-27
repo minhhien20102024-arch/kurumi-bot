@@ -8,6 +8,23 @@ import os
 import datetime
 import asyncio
 import random
+from flask import Flask
+import threading
+
+# --- TẠO CỔNG ẢO CHO RENDER ---
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Bot Kurumi dang hoat dong!"
+
+def run():
+    port = int(os.environ.get("PORT", 3000))
+    app.run(host='0.0.0.0', port=port)
+
+# Chạy server web song song với Bot
+threading.Thread(target=run).start()
+# ------------------------------
 
 # --- CẤU HÌNH THÔNG TIN CHÌA KHÓA THẬT CỦA BẠN ---
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
