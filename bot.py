@@ -19,11 +19,14 @@ def home():
     return "Bot Kurumi dang hoat dong!"
 
 def run():
-    port = int(os.environ.get("PORT", 3000))
-    app.run(host='0.0.0.0', port=port)
+    # Lấy đúng cổng Render cấp, nếu không có thì mặc định chạy cổng 10000
+    port = int(os.environ.get("PORT", 10000)) 
+    
+    # Ép Flask chạy ở chế độ threaded=True để không làm nghẽn luồng của Discord
+    app.run(host='0.0.0.0', port=port, threaded=True)
 
 # Chạy server web song song với Bot
-threading.Thread(target=run).start()
+threading.Thread(target=run, daemon=True).start()
 # ------------------------------
 
 # --- CẤU HÌNH THÔNG TIN CHÌA KHÓA THẬT CỦA BẠN ---
